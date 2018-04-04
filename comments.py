@@ -42,6 +42,8 @@ for i in range(first,last + 1):
 				unknownComments += 1
 	except urllib.error.HTTPError as e:
 		print("Error in {} - Code: {}".format(i, e.code))
+	except urllib.error.URLError as e:
+		print("Error in {} - Code: {}".format(i, e.reason))
 		
 	print('No : {}'.format(i))
 	
