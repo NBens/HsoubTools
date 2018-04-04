@@ -33,12 +33,12 @@ for i in range(first,last + 1):
 
 		spans = soup.find_all('span', {'class' : 'postUsername'})
 		spans.pop(0)
-		totalComments += len(spans)
-		for span in spans:
-		
-			string = span.string.encode('utf-8')
-			
-			if (unknown in string):
+		length = len(spans)
+		totalComments += length
+		if (length > 0):
+			for span in spans:
+				string = span.string.encode('utf-8')
+				if (unknown in string):
 				unknownComments += 1
 	except urllib.error.HTTPError as e:
 		print("Error in {} - Code: {}".format(i, e.code))
