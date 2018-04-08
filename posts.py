@@ -8,9 +8,18 @@ from random import randint
 number = 0
 unknown = b'\xd9\x85\xd8\xb3\xd8\xaa\xd8\xae\xd8\xaf\xd9\x85 \xd9\x85\xd8\xac\xd9\x87\xd9\x88\xd9\x84' # Chinese, Don't touch it plz
 
-first = 73985 #Don't touch this, and don't put 1, we don't want to crash Hsoub servers
-last = 75935  #Go to https://io.hsoub.com/new and get the latest topic (better do it in private browser mode)
+def last_post():
+	# Grabbing last post number
+	page = requests.get('https://io.hsoub.com/new')
+	soup = BeautifulSoup(page.content, 'lxml')
 
+	post = soup.find('span', {'class':'commentsCounter'})
+
+	return post.find('a')['href'].split('/')[2].split('-')[0] # a bit messy, but it does the job!
+
+
+first = 73985 #Don't touch this, and don't put 1, we don't want to crash Hsoub servers
+last = last_post() # you don't have to #Go to https://io.hsoub.com/new and get the latest topic (better do it in private browser mode)
 
 for i in range(first,last + 1):
 	url = "https://io.hsoub.com/go/{}".format(i)
