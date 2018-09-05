@@ -1,2 +1,3 @@
 # HsoubTools
-Tools (and data) to scrape HsoubI/O
+Tools to scrape HsoubI/O data (Comments and Posts)
+Future Updates: Tasliib :)
